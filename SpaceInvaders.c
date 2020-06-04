@@ -146,7 +146,7 @@ void moveToNext();
 void playchoosed();
 void resetArray();
 void Game_result() ;
-void printScore();
+void ShowWinner();
 
 
 int main(void){
@@ -194,14 +194,14 @@ int main(void){
  }	
 
 
-void printScore()
+void ShowWinner()  // print the game result to the screen
 {
-	if(Tcounter==9){
+	if(Tcounter==9){ // if the players played9 times and no winer was found, print it is a tie game
 	Nokia5110_ClearBuffer() ;
 	Nokia5110_DisplayBuffer();
 	Nokia5110_SetCursor(2,2);
 	Nokia5110_OutString("tie game!!");}
-	else{
+	else{  // if X or O won, print the winner
 	Nokia5110_ClearBuffer() ;
 	Nokia5110_DisplayBuffer();
 	Nokia5110_SetCursor( 2 , 2 );
@@ -210,7 +210,7 @@ void printScore()
 	Nokia5110_OutString("Wins!!");
 	}
 	Delay100ms(2);
-	resetArray();
+	resetArray(); // Set the game array to 0 again
 	Xloc=0;
 	Yloc=1;
 	Tcounter=0;
@@ -228,16 +228,16 @@ void resetArray()
 void moveToNext()
 {
 	
-	if (gameboard[Yloc-1][Xloc] == 0 ){
-	   Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursiorRemoved, 0);
+	if (gameboard[Yloc-1][Xloc] == 0 ){ // if the current location is free to play on
+	   Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursiorRemoved, 0); // remove the cursior icon so X or O can be played on
 	   Nokia5110_DisplayBuffer();
 	}
-	else if (gameboard[Yloc-1][Xloc] == 'x')
+	else if (gameboard[Yloc-1][Xloc] == 'x') // if the current location has X symbol , put X on the current location
 	{
 		Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, x, 0);
 	  Nokia5110_DisplayBuffer();
 	}
-	else if (gameboard[Yloc-1][Xloc] == 'o')
+	else if (gameboard[Yloc-1][Xloc] == 'o') // if the current location has o symbol, put o on the current location
 	{
 		Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, o, 0);
 	  Nokia5110_DisplayBuffer();
@@ -254,18 +254,18 @@ void moveToNext()
 			Yloc = 1 ;
 		}
 	}	
-	if(gameboard[Yloc-1][Xloc]!=0){
+	if(gameboard[Yloc-1][Xloc]!=0){ // if the current location has X or O in it , skip and move to the next location
 		moveToNext();
 		return;
 	}
-	Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursior, 0);
+	Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursior, 0); //move cursior to the new location
 	Nokia5110_DisplayBuffer();	
 		
 }
 
-void Game_result(){
+void Game_result(){ // check if someone one
 	
- if( gameboard[0][0] == gameboard[0][1] && gameboard[0][1] == gameboard[0][2] && gameboard[0][0] != 0)   //first coloum
+ if( gameboard[0][0] == gameboard[0][1] && gameboard[0][1] == gameboard[0][2] && gameboard[0][0] != 0)   //first coloum check
  {
 	  
 	  Nokia5110_ClearBuffer() ;
@@ -275,10 +275,10 @@ void Game_result(){
 			 Played='o';}
 	  
     
-	 printScore();
+	 ShowWinner();
 	
  }
- else if (gameboard[1][0] == gameboard[1][1] && gameboard[1][1] == gameboard[1][2] && gameboard[1][0] != 0){ // second coloumn
+ else if (gameboard[1][0] == gameboard[1][1] && gameboard[1][1] == gameboard[1][2] && gameboard[1][0] != 0){ // second coloumn check
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -286,9 +286,9 @@ void Game_result(){
 	
 			 Played='o';}
 	  
-	 printScore();
+	 ShowWinner();
 	}
-  else if (gameboard[2][0] == gameboard[2][1] && gameboard[2][1] == gameboard[2][2] && gameboard[2][0] != 0){  // third coloumn
+  else if (gameboard[2][0] == gameboard[2][1] && gameboard[2][1] == gameboard[2][2] && gameboard[2][0] != 0){  // third coloumn check
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -297,9 +297,9 @@ void Game_result(){
 			 Played='o';}
 	  
 
-	 printScore();
+	 ShowWinner();
 }
-	else if (gameboard[0][0] == gameboard[1][0] && gameboard[1][0] == gameboard[2][0] && gameboard[1][0] != 0){  // first row
+	else if (gameboard[0][0] == gameboard[1][0] && gameboard[1][0] == gameboard[2][0] && gameboard[1][0] != 0){  // first row check
 	 
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -308,9 +308,9 @@ void Game_result(){
 			 Played='o';}
 		
 
-	 printScore();
+	 ShowWinner();
 }
-	else if (gameboard[0][1] == gameboard[1][1] && gameboard[1][1] == gameboard[2][1] && gameboard[0][1] != 0){  //second row
+	else if (gameboard[0][1] == gameboard[1][1] && gameboard[1][1] == gameboard[2][1] && gameboard[0][1] != 0){  //second row check
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -319,9 +319,9 @@ void Game_result(){
 			 Played='o';}
 	  
 
-	 printScore();
+	 ShowWinner();
 }
-	else if (gameboard[0][2] == gameboard[1][2] && gameboard[1][2] == gameboard[2][2] && gameboard[0][2] != 0){ // third row
+	else if (gameboard[0][2] == gameboard[1][2] && gameboard[1][2] == gameboard[2][2] && gameboard[0][2] != 0){ // third row check
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -329,20 +329,20 @@ void Game_result(){
 	
 			 Played='o';}
 	
-	 printScore();
+	 ShowWinner();
 }
-	else if (gameboard[0][0] == gameboard[1][1] && gameboard[1][1] == gameboard[2][2] && gameboard[0][0] != 0){  // left to right diag
+	else if (gameboard[0][0] == gameboard[1][1] && gameboard[1][1] == gameboard[2][2] && gameboard[0][0] != 0){  // left to right diagonal check
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
-	if(gameboard[0][0]!='x'){
+	if(gameboard[0][0]!='x'){ // assign played to the winner
 	  
 			 Played='o';}
 	  
 
-	 printScore();
+	 ShowWinner();
 }
-	else if (gameboard[2][0] == gameboard[1][1] && gameboard[1][1] == gameboard[0][2] && gameboard[2][0] != 0){
+	else if (gameboard[2][0] == gameboard[1][1] && gameboard[1][1] == gameboard[0][2] && gameboard[2][0] != 0){ // right to left diagonal ccheck
 	  
 	  Nokia5110_ClearBuffer() ;
 	  Nokia5110_DisplayBuffer();
@@ -350,46 +350,45 @@ void Game_result(){
 	 
 			 Played='o';}
 	 
-	 printScore();
+	 ShowWinner();
 }
 	
-	
  
-if (Tcounter==9){
-	printScore();
+if (Tcounter==9){ // if it is a tie go to show winner function
+	ShowWinner();
 }}
-void playchoosed(){
+void playchoosed(){  // put the current player symobol on board
 
     if(Player == 1 )
     {
-        if(gameboard[Yloc-1][Xloc] == 0){
-                Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursiorRemoved, 0);
+        if(gameboard[Yloc-1][Xloc] == 0){  
+                Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, movecursiorRemoved, 0); // remove the cursior from the current location
                 Nokia5110_DisplayBuffer();
 
-                Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, x, 0);
+                Nokia5110_PrintBMP(Xloc*32+2, Yloc*16-2, x, 0); // put x on the current location
                 Nokia5110_DisplayBuffer();
 
               Player = 2 ;// change player
 
-              gameboard[Yloc-1][Xloc] = 'x';
+              gameboard[Yloc-1][Xloc] = 'x'; // save x on the game array
               Played= 'x';
-					     Tcounter++;
+					     Tcounter++; // one move exerted
         }
     }
     else
     {
         if(gameboard[Yloc-1][Xloc] == 0){
-          Nokia5110_PrintBMP(Xloc *32+2, Yloc*16-2, movecursiorRemoved, 0);
+          Nokia5110_PrintBMP(Xloc *32+2, Yloc*16-2, movecursiorRemoved, 0);   // remove the cursior from the current location
             Nokia5110_DisplayBuffer();
 
-            Nokia5110_PrintBMP(Xloc *32+2, Yloc*16-2, o , 0);
+            Nokia5110_PrintBMP(Xloc *32+2, Yloc*16-2, o , 0);// put o on the current location
             Nokia5110_DisplayBuffer();
 
           Player = 1 ; //change player
 
-          gameboard[Yloc-1][Xloc] = 'o';
+          gameboard[Yloc-1][Xloc] = 'o'; // save o on the game array
           Played= 'o';
-					Tcounter++;
+					Tcounter++; // one move exerted
         }
     }
 
