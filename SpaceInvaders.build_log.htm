@@ -1,0 +1,56 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Keil\Labware\Lab15_SpaceInvaders\SpaceInvaders.uvproj
+Project File Date:  06/03/2020
+
+<h2>Output:</h2>
+Build target 'SpaceInvaders'
+linking...
+Program Size: Code=4964 RO-data=2212 RW-data=76 ZI-data=1692  
+".\SpaceInvaders.axf" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>
+aders.c(146): warning:  #1295-D: Deprecated declaration playchoosed - give arg types
+  void playchoosed();
+SpaceInvaders.c(147): warning:  #1295-D: Deprecated declaration resetArray - give arg types
+  void resetArray();
+SpaceInvaders.c(148): warning:  #1295-D: Deprecated declaration Game_result - give arg types
+  void Game_result() ;
+SpaceInvaders.c(149): warning:  #1295-D: Deprecated declaration printScore - give arg types
+  void printScore();
+SpaceInvaders.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=4964 RO-data=2212 RW-data=76 ZI-data=1692  
+".\SpaceInvaders.axf" - 0 Error(s), 5 Warning(s).
+
+linking...
+Program Size: Code=4920 RO-data=3484 RW-data=76 ZI-data=1692  
+".\SpaceInvaders.axf" - 0 Error(s), 6 Warning(s).
+  #177-D: variable "row" was declared but never referenced
+        int  row = Xloc, col = Yloc - 1 , i;
+SpaceInvaders.c(302): warning:  #177-D: variable "col" was declared but never referenced
+        int  row = Xloc, col = Yloc - 1 , i;
+SpaceInvaders.c(302): warning:  #550-D: variable "i" was set but never used
+        int  row = Xloc, col = Yloc - 1 , i;
+SpaceInvaders.c: 10 warnings, 0 errors
+linking...
+Program Size: Code=4720 RO-data=3484 RW-data=92 ZI-data=1692  
+".\SpaceInvaders.axf" - 0 Error(s), 10 Warning(s).
+
+SpaceInvaders.c(298): warning:  #550-D: variable "i" was set but never used
+        int  row = xPosition, col = yPosition - 1 , i;
+SpaceInvaders.c(371): error:  #75: operand of "*" must be a pointer
+                        Nokia5110_PrintBMP(*24+2, yPosition*16-2, movecursiorRemoved, 0);
+SpaceInvaders.c(374): error:  #75: operand of "*" must be a pointer
+                        Nokia5110_PrintBMP(*24+2, yPosition*16-2, x, 0);
+SpaceInvaders.c(384): error:  #75: operand of "*" must be a pointer
+                  Nokia5110_PrintBMP(*24+2, yPosition*16-2, movecursiorRemoved, 0);
+SpaceInvaders.c(387): error:  #75: operand of "*" must be a pointer
+                        Nokia5110_PrintBMP(*24+2, yPosition*16-2, o , 0);
+SpaceInvaders.c: 8 warnings, 8 errors
+".\SpaceInvaders.axf" - 8 Error(s), 8 Warning(s).
+Target not created
